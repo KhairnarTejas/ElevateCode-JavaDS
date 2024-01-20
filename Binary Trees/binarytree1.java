@@ -60,9 +60,36 @@ public class binarytree1 {
             System.out.print(root.data + " ");
         }
 
-        //Level Order Traversal
-        public static void levelOrder(Node root){
-            
+        // Level Order Traversal
+        public static void levelOrder(Node root) {
+            if (root == null) {
+                return;
+            }
+
+            Queue<Node> q = new LinkedList<>();
+
+            q.add(root);
+            q.add(null);
+
+            while (!q.isEmpty()) {
+                Node currNode = q.remove();
+                if (currNode == null) {
+                    System.out.println();
+                    if (q.isEmpty()) {
+                        break;
+                    } else {
+                        q.add(null);
+                    }
+                } else {
+                    System.out.print(currNode.data + " ");
+                    if (currNode.left != null) {
+                        q.add(currNode.left);
+                    }
+                    if (currNode.right != null) {
+                        q.add(currNode.right);
+                    }
+                }
+            }
         }
     }
 
@@ -77,5 +104,7 @@ public class binarytree1 {
         tree.inOrder(root);
         System.out.println();
         tree.postOrder(root);
+        System.out.println();
+        tree.levelOrder(root);
     }
 }
