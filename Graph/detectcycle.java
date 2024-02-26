@@ -1,6 +1,7 @@
 import java.util.*;
 
-public class bfs {
+public class detectcycle {
+
     static class Edge {
         int src;
         int dest;
@@ -50,47 +51,48 @@ public class bfs {
 
     }
 
-    public static void bfs(ArrayList<Edge> graph[]) {
+    public static boolean detectCycle(ArrayList<Edge> graph[]) {
         boolean vis[] = new boolean[graph.length];
         for (int i = 0; i < graph.length; i++) {
             if (!vis[i]) {
-                bfsUtil(graph, vis);
+                if (detectCycleUtil(graph, vis, i, -1)) {
+                    return true;
+                    // cycle exists in one of the path
+                }
             }
         }
+        return false;
     }
 
-    public static void bfsUtil(ArrayList<Edge> graph[], boolean vis[]) { // O(V+E)
-        Queue<Integer> q = new LinkedList<>();
+    public static boolean detectCycleUtil(ArrayList<Edge> graph[], boolean vis[], int curr, int par) {
+        vis[curr] = true;
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
 
-        q.add(0); // Source = 0
-
-        while (!q.isEmpty()) {
-            int curr = q.remove();
-            if (!vis[curr]) {
-                vis[curr] = true;
-                System.out.print(curr + " ");
-                for (int i = 0; i < graph[curr].size(); i++) {
-                    Edge e = graph[curr].get(i);
-                    q.add(e.dest);
+            // Case 3
+            if (!vis[e.dest]) {
+                if (detectCycleUtil(graph, vis, e.dest, curr)) {
+                    return true;
                 }
             }
 
-        }
+            // Case 1
+            else if (vis[e.dest] && e.dest != par) {
+                return true;
+            }
+            // case 2 -> do nothing -> continue
 
+        }
+        return false;
     }
 
-    
-    
-    
     public static void main(String args[]) {
+
         int v = 7;
         ArrayList<Edge> graph[] = new ArrayList[v];
         createGraph(graph);
 
-        bfs(graph);
-        System.out.println();
         
-        
+        System.out.println(detectCycle(graph));
     }
-
 }

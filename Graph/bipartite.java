@@ -1,6 +1,7 @@
 import java.util.*;
 
-public class bfs {
+public class bipartite {
+
     static class Edge {
         int src;
         int dest;
@@ -50,47 +51,46 @@ public class bfs {
 
     }
 
-    public static void bfs(ArrayList<Edge> graph[]) {
-        boolean vis[] = new boolean[graph.length];
-        for (int i = 0; i < graph.length; i++) {
-            if (!vis[i]) {
-                bfsUtil(graph, vis);
-            }
+    // Graph with Even cycle is always bipartite
+    public static boolean isBipartite(ArrayList<Edge> graph[]) {
+        int color[] = new int[graph.length];
+        for (int i = 0; i < color.length; i++) {
+            color[i] = -1; // no color
         }
-    }
 
-    public static void bfsUtil(ArrayList<Edge> graph[], boolean vis[]) { // O(V+E)
         Queue<Integer> q = new LinkedList<>();
-
-        q.add(0); // Source = 0
-
-        while (!q.isEmpty()) {
-            int curr = q.remove();
-            if (!vis[curr]) {
-                vis[curr] = true;
-                System.out.print(curr + " ");
-                for (int i = 0; i < graph[curr].size(); i++) {
-                    Edge e = graph[curr].get(i);
-                    q.add(e.dest);
+        for (int i = 0; i < graph.length; i++) {
+            if (color[i] == -1) {// BFS
+                q.add(i);
+                color[i] = 0;// yellow
+                while (!q.isEmpty()) {
+                    int curr = q.remove();
+                    for (int j = 0; j < graph[curr].size(); j++) {
+                        Edge e = graph[curr].get(j);
+                        if (color[e.dest] == -1) {
+                            int nextCol = color[curr] == 0 ? 1 : 0;
+                            color[e.dest] = nextCol;
+                            q.add(e.dest);
+                        } else if (color[e.dest] == color[curr]) {
+                            return false; // Not Bipartite
+                        }
+                    }
                 }
-            }
 
+            }
         }
+        return true;
 
     }
 
-    
-    
-    
     public static void main(String args[]) {
+
         int v = 7;
         ArrayList<Edge> graph[] = new ArrayList[v];
         createGraph(graph);
 
-        bfs(graph);
-        System.out.println();
-        
-        
+        System.out.println(isBipartite(graph));
+
     }
 
 }

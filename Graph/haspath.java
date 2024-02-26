@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class bfs {
+public class haspath {
     static class Edge {
         int src;
         int dest;
@@ -50,47 +50,27 @@ public class bfs {
 
     }
 
-    public static void bfs(ArrayList<Edge> graph[]) {
-        boolean vis[] = new boolean[graph.length];
-        for (int i = 0; i < graph.length; i++) {
-            if (!vis[i]) {
-                bfsUtil(graph, vis);
+    public static boolean hasPath(ArrayList<Edge> graph[], int src, int dest, boolean visited[]) {
+        if (src == dest) {
+            return true;
+        }
+        visited[src] = true;
+        for (int i = 0; i < graph[src].size(); i++) {
+            Edge e = graph[src].get(i);
+            // e.dest = neighbour
+            if (!visited[e.dest] && hasPath(graph, e.dest, dest, visited)) {
+                return true;
             }
         }
+        return false;
     }
 
-    public static void bfsUtil(ArrayList<Edge> graph[], boolean vis[]) { // O(V+E)
-        Queue<Integer> q = new LinkedList<>();
-
-        q.add(0); // Source = 0
-
-        while (!q.isEmpty()) {
-            int curr = q.remove();
-            if (!vis[curr]) {
-                vis[curr] = true;
-                System.out.print(curr + " ");
-                for (int i = 0; i < graph[curr].size(); i++) {
-                    Edge e = graph[curr].get(i);
-                    q.add(e.dest);
-                }
-            }
-
-        }
-
-    }
-
-    
-    
-    
     public static void main(String args[]) {
         int v = 7;
         ArrayList<Edge> graph[] = new ArrayList[v];
         createGraph(graph);
 
-        bfs(graph);
-        System.out.println();
-        
-        
-    }
+        System.out.println("\n" + hasPath(graph, 0, 5, new boolean[v]));
 
+    }
 }
