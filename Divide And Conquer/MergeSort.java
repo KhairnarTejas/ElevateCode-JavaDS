@@ -16,7 +16,7 @@ public class MergeSort {
             return;
         }
         int mid=(si+ei)/2;
-        mergeSort(arr, 0, mid);
+        mergeSort(arr, si, mid);
         mergeSort(arr, mid+1, ei);
 
         merge(arr,si,mid,ei);

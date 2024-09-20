@@ -19,6 +19,7 @@ public class ArrayList4Sorting {
         
         //Descending
         Collections.sort(list, Collections.reverseOrder());
-        
+        System.out.println(list);
+
     }
 }

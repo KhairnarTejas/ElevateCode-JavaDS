@@ -13,15 +13,13 @@ public class Arrays4 {
             {
                 largest=numbers[i];
             }
-        }
-        
-        for(int i=0;i<numbers.length;i++)
-        {
             if(numbers[i]<smallest)
             {
                 smallest=numbers[i];
             }
         }
+        
+        
         System.out.println("Lowest is : "+smallest);
 
         return largest;

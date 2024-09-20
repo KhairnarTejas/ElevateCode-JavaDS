@@ -30,7 +30,7 @@ public static void primesinrange(int n)
             count++;
         }
     }
-    System.out.println("*****Total number of prime numbers are  : "+count+" *****");
+    System.out.println("\n*****Total number of prime numbers are  : "+count+" *****");
 } 
 public static void main(String args[])
 {

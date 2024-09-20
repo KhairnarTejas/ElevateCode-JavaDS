@@ -122,17 +122,25 @@ public class LinkedList {
             return val;
         }
     
-        //prev: i = size - 2
-        Node prev = head;
-        for(int i = 0; i < size - 2; i++) {
-            prev = prev.next;
+        // //prev: i = size - 2
+        // Node prev = head;
+        // for(int i = 0; i < size - 2; i++) {
+        //     prev = prev.next;
+        // }
+    
+        // int val = tail.data; //tail.data
+        // prev.next = null;
+        // tail = prev;
+        // size--;
+    
+        // return val;
+
+        Node temp=head;
+        while(temp.next.next!=null){
+            temp=temp.next;
         }
-    
-        int val = tail.data; //tail.data
-        prev.next = null;
-        tail = prev;
-        size--;
-    
+        int val=temp.next.data;
+        temp.next=null;
         return val;
     }
     

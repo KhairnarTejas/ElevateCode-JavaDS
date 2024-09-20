@@ -15,7 +15,7 @@ public static boolean isprime(int n)
             return false; 
         }
     }
-    return true;
+    return true; 
 }
     public static void main(String args[])
     {

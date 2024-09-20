@@ -21,19 +21,19 @@ public class spiralmatrix {
             //bottom
             for(int j=endcol-1;j>=startcol;j--)
             {
-                if(startrow==endrow)
-                {
-                    break;
-                }
+                // if(startrow==endrow)
+                // {
+                //     break;
+                // }
                 System.out.print(matrix[endrow][j]+"\t");
             }
             //left
             for(int i=endrow-1;i>=startrow+1;i--)
             {
-                if(startcol==endcol)
-                {
-                    break;
-                }
+                // if(startcol==endcol)
+                // {
+                //     break;
+                // }
                 System.out.print(matrix[i][startcol]+"\t");
             }
            

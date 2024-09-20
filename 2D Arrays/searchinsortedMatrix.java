@@ -20,7 +20,7 @@ public class searchinsortedMatrix {
                 row++;
             }
         }
-        System.out.println("Key Not  Found...");
+        System.out.println("Key Not Found...");
         return false;
     }
     public static void main(String args[])

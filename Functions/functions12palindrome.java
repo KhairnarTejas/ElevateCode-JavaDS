@@ -13,11 +13,11 @@ public class functions12palindrome {
         }
         if(reverse==num)
         {
-            System.out.println("Entred number is a Palindrome.");
+            System.out.println("Entered number is a Palindrome.");
         }
         else
         {
-            System.out.println("Entred number is not a Palindrome.");
+            System.out.println("Entered number is not a Palindrome.");
           
         }
     }
