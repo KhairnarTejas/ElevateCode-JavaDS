@@ -77,17 +77,9 @@ public class diameterOfTree {
         } else if (node == null || subRoot == null || node.data != subRoot.data) {
             return false;
         }
-
-        if (!isIdentical(node.left, subRoot.left)) {
-            return false;
-        }
-        if (!isIdentical(node.right, subRoot.right)) {
-            return false;
-        }
-        return true;
+        return isIdentical(node.left, subRoot.left) && isIdentical(node.right, subRoot.right);
     }
 
-    
     public static void main(String args[]) {
         /*
          * 1
@@ -119,6 +111,6 @@ public class diameterOfTree {
         subRoot.right = new Node(5);
 
         System.out.println("isSubtree : " + isSubtree(root, subRoot));
-        
+
     }
 }
